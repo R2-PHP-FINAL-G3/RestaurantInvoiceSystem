@@ -24,6 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('invoices', [invoiceController::class, 'index'])->name('invoices');
 Route::get('invoices/create', [invoiceController::class, 'create'])->name('invoices.create');
-Route::post('invoice/store', [invoiceController::class, 'create'])->name('invoice.store');
+Route::post('invoice/store', [invoiceController::class, 'store'])->name('invoice.store');
 
 Auth::routes();

@@ -23,7 +23,7 @@
                 <select class="form-select form-control" id="inputItem" aria-label="Default select example" onchange="productSelect(value)">
                   <option value="false">...</option>
                   @foreach ($products as $product)
-                  <option value="{{$product}}">{{ $product->product_name }}</option>
+                  <option value="{{$product}}">{{ $product->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -88,7 +88,7 @@
       // product is json string so parse it to could access product info
       let productInfo = JSON.parse(product);
       pushProduct(productInfo);
-      calculateBillTotalPrice(productInfo.product_price);
+      calculateBillTotalPrice(parseFloat(productInfo.price));
     }
   }
 
@@ -97,9 +97,9 @@
       <tbody id="tBody">
         <tr>
           <th scope="row">${++items}</th>
-          <td>${product.product_name}</td>
+          <td>${product.name}</td>
           <td>1</td>
-          <td>${product.product_price}</td>
+          <td>${product.price}</td>
         </tr>
       </tbody>`;
   }
@@ -114,6 +114,7 @@
   function calculateBillTotalPrice(price) {
     let newPrice = oldPrice += price;
     document.getElementById("formTotalPrice").value = newPrice;
+    console.log(newPrice);
   }
 </script>
 

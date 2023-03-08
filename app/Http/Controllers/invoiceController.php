@@ -15,7 +15,8 @@ class invoiceController extends Controller
      */
     public function index()
     {
-        return view('invoices');
+        $bills = Bill::all();
+        return view('invoices', ['bills' => $bills]);
     }
 
     /**
@@ -23,8 +24,8 @@ class invoiceController extends Controller
      */
     public function create()
     {
-        $customers = []; //Customer::all();
-        $products = []; //Meal::all();
+        $customers = Customer::all();
+        $products = Meal::all();
         return view('invoice', [
             'customers' => $customers,
             'products' => $products,
@@ -56,13 +57,13 @@ class invoiceController extends Controller
         // dd($bill);
         // 2. send info to api
         Http::withHeaders([
-            'Authorization' => 'Bearer 2|aqQghWswGXwUAZv2PaD8vGNeZeR7QO8nXLYdYTQK'
+            'Authorization' => 'Bearer ' . config('constants.API_KEY')
         ])->post(config('constants.DELIVERY_SRV_API') . 'orders/add', [
             'companyId' => 1,
             'isPaid' => 1,
             'delivaryFees' => 0,//$bill['delivaryFees'],
             'city' => $client['city'],
-            'street' => $client['address_1'],
+            'street' => $client['street'],
             'buildingNumber' => 0,
             'floorNumber' => 0,
             'apartmentNumber' => 0,
@@ -73,7 +74,7 @@ class invoiceController extends Controller
             'invoiceCode' => $code,
         ]);
         // return $res;
-        return redirect('/allinvoices');
+        return redirect('invoices');
     }
 
     /**
