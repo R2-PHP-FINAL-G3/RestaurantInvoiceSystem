@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\invoiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,16 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/', function() {
-//     return view('dashboard');
-// });
-
-Auth::routes();
 
 Route::get('/', [dashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('invoices', [invoiceController::class, 'index'])->name('invoices');
+Route::get('invoices/create', [invoiceController::class, 'create'])->name('invoices.create');
+Route::post('invoice/store', [invoiceController::class, 'create'])->name('invoice.store');
+
+Auth::routes();
