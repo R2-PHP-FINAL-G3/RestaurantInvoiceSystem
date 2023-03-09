@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Meal;
 use Illuminate\Http\Request;
 
-class deliveryController extends Controller
+class mealController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $deliveryGuys = [];
-        $count = 0;
-        return view('deliveryguys', ['deliveryGuys' => $deliveryGuys, 'count' => $count]);
+        $meals = Meal::all();
+        return view('meals', ['meals' => $meals]);
     }
 
     /**
@@ -21,7 +21,7 @@ class deliveryController extends Controller
      */
     public function create()
     {
-        return view('deliveryguys.create');
+        return view('meal');
     }
 
     /**
@@ -29,7 +29,19 @@ class deliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+        ]);
+
+        $meal = $request->all();
+        
+        Meal::create([
+            'name' => $meal['name'],
+            'price' => $meal['price'],
+        ]);
+
+        return redirect('meals');
     }
 
     /**

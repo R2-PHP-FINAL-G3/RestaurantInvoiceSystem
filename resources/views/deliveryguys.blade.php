@@ -8,8 +8,8 @@
       <div class="card mb-4">
         <div class="card-header pb-0">
           <div class="d-flex justify-content-between">
-            <h6 >Customers table</h6>
-            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{{ route('customers.create') }}">Add Cutomer</a>
+            <h6 >Delivery Guy table</h6>
+            <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{{ route('deliveryguys.create') }}">Add Delivery Guy</a>
           </div>
         </div>
         <div class="card-body px-0 pt-0 pb-2">
@@ -19,43 +19,40 @@
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">National Id</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($customers as $customer)
+                @foreach($deliveryGuys as $guy)
                 <tr>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$customer->id}}</h6>
+                        <h6 class="mb-0 text-sm">{{++$count}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$customer->name}}</h6>
+                        <h6 class="mb-0 text-sm">{{$guy->name}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$customer->phone}}</h6>
+                        <h6 class="mb-0 text-sm">{{$guy->userName}}</h6>
                       </div>
                     </div>
                   </td>
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$customer->city}}, {{$customer->street}}</h6>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
                 @endforeach
               </tbody>
             </table>

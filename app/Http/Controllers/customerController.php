@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class customerController extends Controller
@@ -11,7 +12,8 @@ class customerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('customers', ['customers' => $customers]);
     }
 
     /**
@@ -19,7 +21,7 @@ class customerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer');
     }
 
     /**
@@ -27,7 +29,38 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        //validate the input
+        $request->validate([
+            'Client_Name' => 'required',
+            'Email' => 'required|email',
+            'Phone' => 'required|max:15',
+            'Address' => 'required',
+            'Street' => 'required',
+        ]);
+
+        //create a new customer
+        $customersData = $request->all();
+        // dd($customerData);
+        $Client_Name = $customersData['Client_Name'];
+
+        // $Rate=$customerData['Rate'];
+        $Email = $customersData['Email'];
+        $Phone = $customersData['Phone'];
+
+        $Address = $customersData['Address'];
+
+        $newCustomer = Customer::create([
+            'name' => $Client_Name,
+            'email' => $Email,
+            'phone' => $Phone,
+            'city' => $Address,
+            'street' => $customersData['Street'],
+
+        ]);
+
+        // redirect the user and write friendly message
+        return redirect()->route('customers')->with('New customer has been added successfully ');
     }
 
     /**
