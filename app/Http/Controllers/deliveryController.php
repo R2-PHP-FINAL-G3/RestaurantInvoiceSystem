@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class deliveryController extends Controller
 {
@@ -11,8 +12,16 @@ class deliveryController extends Controller
      */
     public function index()
     {
-        $deliveryGuys = [];
+        // $deliveryGuys = [];
         $count = 0;
+
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . config('constants.API_KEY')
+        ])->get(config('constants.DELIVERY_SRV_API') . 'deliverystaff');
+
+        $deliveryGuys = json_decode($response->body(), true);
+        // dd($deliveryGuys);
         return view('deliveryguys', ['deliveryGuys' => $deliveryGuys, 'count' => $count]);
     }
 
@@ -21,7 +30,7 @@ class deliveryController extends Controller
      */
     public function create()
     {
-        return view('deliveryguys.create');
+        return view('deliveryguy');
     }
 
     /**
@@ -29,7 +38,31 @@ class deliveryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'user-name' => 'required',
+            'national-id' => 'required',
+            'phone' => 'required',
+            'salary' => 'required',
+            'password' => 'required',
+            'motor-num' => 'required',
+            'email' => 'required|email',
+        ]);
+        $info = $request->all();
+        // send info to api
+        Http::withHeaders([
+            'Authorization' => 'Bearer ' . config('constants.API_KEY')
+        ])->post(config('constants.DELIVERY_SRV_API') . 'deliverystaff/add', [
+            'name' => $info['name'],
+            'user-name' => $info['user-name'],
+            'national-id' => $info['national-id'],
+            'phone' => $info['phone'],
+            'salary' => $info['salary'],
+            'password' => $info['password'],
+            'motor-num' => $info['motor-num'],
+            'email' => $info['email'],
+        ]);
+        return redirect('deliveryguys');
     }
 
     /**

@@ -8,7 +8,7 @@
       <div class="card mb-4">
         <div class="card-header pb-0">
           <div class="d-flex justify-content-between">
-            <h6 >Delivery Guy table</h6>
+            <h6>Delivery Guy table</h6>
             <a class="btn btn-outline-primary btn-sm mb-0 me-3" href="{{ route('deliveryguys.create') }}">Add Delivery Guy</a>
           </div>
         </div>
@@ -24,8 +24,6 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
@@ -42,18 +40,46 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy->name}}</h6>
+                        <h6 class="mb-0 text-sm">{{$guy['name']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy->userName}}</h6>
+                        <h6 class="mb-0 text-sm">{{$guy['userName']}}</h6>
                       </div>
                     </div>
                   </td>
-                @endforeach
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$guy['nationalId']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$guy['phone']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$guy['created_at']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$guy['status']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  @endforeach
               </tbody>
             </table>
           </div>
