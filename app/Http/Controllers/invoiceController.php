@@ -57,11 +57,11 @@ class invoiceController extends Controller
         // dd($bill);
         // 2. send info to api
         Http::withHeaders([
-            'Authorization' => 'Bearer ' . config('constants.API_KEY')
+            'Authorization' => 'Bearer ' . config('constants.API_KEY'),
         ])->post(config('constants.DELIVERY_SRV_API') . 'orders/add', [
             'companyId' => 1,
             'isPaid' => 1,
-            'delivaryFees' => 0,//$bill['delivaryFees'],
+            'delivaryFees' => 0, //$bill['delivaryFees'],
             'city' => $client['city'],
             'street' => $client['street'],
             'buildingNumber' => 0,
@@ -107,5 +107,19 @@ class invoiceController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function deliveringOrders()
+    {
+        $count = 0;
+
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . config('constants.API_KEY'),
+        ])->get(config('constants.DELIVERY_SRV_API') . 'orders');
+
+        $deliveryOrders = json_decode($response->body(), true);
+        // dd($deliveryGuys);
+        return view('deliveryorders', ['deliveryOrders' => $deliveryOrders, 'count' => $count]);
     }
 }
