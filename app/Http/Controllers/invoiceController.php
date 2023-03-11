@@ -119,7 +119,7 @@ class invoiceController extends Controller
         ])->get(config('constants.DELIVERY_SRV_API') . 'orders');
 
         $deliveryOrders = json_decode($response->body(), true);
-        // dd($deliveryGuys);
+        // dd($deliveryOrders);
         return view('deliveryorders', ['deliveryOrders' => $deliveryOrders, 'count' => $count]);
     }
 }

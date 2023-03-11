@@ -130,7 +130,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">delivery guy orders</span>
+          <span class="nav-link-text ms-1">Delivering Orders</span>
         </a>
       </li>
       <li class="nav-item">

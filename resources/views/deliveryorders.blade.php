@@ -13,17 +13,19 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">National Id</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Phone</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start Date</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Invoice Code</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Total Price</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delivery Guy</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Delivary Fees</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client Phone</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
               <tbody>
-                @foreach($deliveryGuys as $guy)
+                @foreach($deliveryOrders as $order)
                 <tr>
                   <td>
                     <div class="d-flex px-2 py-1">
@@ -35,42 +37,56 @@
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['name']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['invoiceCode']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['userName']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['totalPrice']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['nationalId']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['name']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['phone']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['delivaryFees']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['created_at']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['status']}}</h6>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
-                        <h6 class="mb-0 text-sm">{{$guy['status']}}</h6>
+                        <h6 class="mb-0 text-sm">{{$order['city']}} {{$order['street']}} {{$order['buildingNumber']}} </h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$order['clientName']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{$order['clientPhone']}}</h6>
                       </div>
                     </div>
                   </td>
