@@ -21,6 +21,7 @@
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Address</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client</th>
                   <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Client Phone</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
                   <th class="text-secondary opacity-7"></th>
                 </tr>
               </thead>
@@ -87,6 +88,16 @@
                     <div class="d-flex px-2 py-1">
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="mb-0 text-sm">{{$order['clientPhone']}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex px-2 py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <form action="{{ route('invoice.cancel') }}" method="get">
+                          <input type="text" value={{ $order['invoiceId'] }} hidden name="orderId">
+                          <button class="btn btn-danger btn-sm" type="submit" >Cancel</button>
+                        </form>
                       </div>
                     </div>
                   </td>

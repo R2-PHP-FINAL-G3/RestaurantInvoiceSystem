@@ -122,4 +122,14 @@ class invoiceController extends Controller
         // dd($deliveryOrders);
         return view('deliveryorders', ['deliveryOrders' => $deliveryOrders, 'count' => $count]);
     }
+
+    public function cancelOrder(Request $req)
+    {
+        Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . config('constants.API_KEY'),
+        ])->get(config('constants.DELIVERY_SRV_API') . "comp/order/update/$req->orderId/cancelled");
+
+        return redirect()->route('deliveringOrders');
+    }
 }

@@ -29,6 +29,7 @@ Route::get('invoices', [invoiceController::class, 'index'])->name('invoices');
 Route::get('invoices/create', [invoiceController::class, 'create'])->name('invoices.create');
 Route::post('invoice/store', [invoiceController::class, 'store'])->name('invoice.store');
 Route::get('deliveryorders', [invoiceController::class, 'deliveringOrders'])->name('deliveringOrders');
+Route::get('order/cancel', [invoiceController::class, 'cancelOrder'])->name('invoice.cancel');
 
 // ---------- CUSTOMERS ------------ //
 Route::get('customers', [customerController::class, 'index'])->name('customers');

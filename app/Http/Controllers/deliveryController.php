@@ -96,4 +96,14 @@ class deliveryController extends Controller
     {
         //
     }
+
+    public function fireDelivery(Request $req)
+    {
+        Http::withHeaders([
+            'Accept' => 'application/json',
+            'Authorization' => 'Bearer ' . config('constants.API_KEY'),
+        ])->get(config('constants.DELIVERY_SRV_API') . "comp/order/update/$req->orderId/cancelled");
+
+        return redirect()->route('deliveringOrders');
+    }
 }
