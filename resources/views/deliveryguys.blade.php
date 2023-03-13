@@ -79,6 +79,16 @@
                       </div>
                     </div>
                   </td>
+                  <td>
+                    <div class="d-flex-px-2-py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <form action="{{route('deliveryguy.delete')}}" method="get">
+                          <input type="text" value={{$guy['id']}} hidden name="id" >
+                          <button class="btn btn-danger btn-sm" type="submit" >Delete</button>
+                        </form>
+                      </div>
+                    </div>
+                  </td>
                   @endforeach
               </tbody>
             </table>

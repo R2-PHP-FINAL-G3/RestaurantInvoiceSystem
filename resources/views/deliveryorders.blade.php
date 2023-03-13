@@ -101,6 +101,7 @@
                       </div>
                     </div>
                   </td>
+                  
                   @endforeach
               </tbody>
             </table>

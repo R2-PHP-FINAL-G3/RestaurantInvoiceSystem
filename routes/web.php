@@ -45,5 +45,7 @@ Route::post('meal/store', [mealController::class, 'store'])->name('meal.store');
 Route::get('deliveryguys', [deliveryController::class, 'index'])->name('deliveryguys');
 Route::get('deliveryguys/create', [deliveryController::class, 'create'])->name('deliveryguys.create');
 Route::post('deliveryguy/store', [deliveryController::class, 'store'])->name('deliveryguy.store');
+Route::post('deliveryguy/delete/{id}', [deliveryController::class, 'fireDelivery'])->name('deliveryguy.delete');
+
 
 Auth::routes();
