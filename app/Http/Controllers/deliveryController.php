@@ -21,7 +21,7 @@ class deliveryController extends Controller
         ])->get(config('constants.DELIVERY_SRV_API') . 'deliverystaff');
 
         $deliveryGuys = json_decode($response->body(), true);
-        dd($deliveryGuys);
+        // dd($deliveryGuys);
         return view('deliveryguys', ['deliveryGuys' => $deliveryGuys, 'count' => $count]);
     }
 
@@ -99,12 +99,12 @@ class deliveryController extends Controller
 
     public function fireDelivery(Request $req)
     {
-        dd($req);
         Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => 'Bearer ' . config('constants.API_KEY'),
-        ])->get(config('constants.DELIVERY_SRV_API') . "delivery/$req->id");
-
+        ])->delete(config('constants.DELIVERY_SRV_API') . "delivery/$req->id");
+        
+        // dd($req);
         return redirect()->route('deliveryguys');
     }
 
