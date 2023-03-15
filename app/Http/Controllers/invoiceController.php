@@ -61,7 +61,7 @@ class invoiceController extends Controller
         ])->post(config('constants.DELIVERY_SRV_API') . 'orders/add', [
             'companyId' => 1,
             'isPaid' => 1,
-            'delivaryFees' => 0, //$bill['delivaryFees'],
+            'delivaryFees' => 15, //$bill['delivaryFees'],
             'city' => $client['city'],
             'street' => $client['street'],
             'buildingNumber' => 0,
