@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-12">
       <div class="card mb-4">
-       
+
         <div class="card-body px-0 pt-0 pb-2">
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
@@ -96,12 +96,12 @@
                       <div class="d-flex flex-column justify-content-center">
                         <form action="{{ route('invoice.cancel') }}" method="get">
                           <input type="text" value={{ $order['invoiceId'] }} hidden name="orderId">
-                          <button class="btn btn-danger btn-sm" type="submit" >Cancel</button>
+                          <button class="btn btn-danger btn-sm" type="submit">Cancel</button>
                         </form>
                       </div>
                     </div>
                   </td>
-                  
+
                   @endforeach
               </tbody>
             </table>
@@ -116,5 +116,22 @@
 @endsection
 
 @section('script')
+
+<script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+<script>
+  // Enable pusher logging - don't include this in production
+  Pusher.logToConsole = true;
+
+  var pusher = new Pusher('372ce9a6ac87e137328d', {
+    cluster: 'eu',
+    encrypted: true
+  });
+
+  // TEST STATUS UPDATING FROM DELIVERY GUY
+  var channel = pusher.subscribe('channel-order-status-delivery');
+  channel.bind('App\\Events\\ayNela', function(data) {
+    location.reload();
+  });
+</script>
 
 @endsection
